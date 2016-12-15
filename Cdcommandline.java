@@ -26,7 +26,7 @@ public class Cdcommandline {
 	
 	//list all the files in this directory
 		private static void listFiles(String folder){
-			File directory = new File(folder);//进入当前文件夹
+			File directory = new File(folder);//entering the current folder
 			File[] contents = directory.listFiles();
 			for ( File f : contents) {
 			  System.out.println(f.getAbsolutePath());
@@ -56,12 +56,10 @@ public class Cdcommandline {
 		//check if word[1] the current path is exist
 		private static boolean checkCurrentDirectory(String input) {
 			File file =new File(input);    
-			if  (!file.exists()  && !file.isDirectory()) {       
-			    //System.out.println("目录不存在");    
+			if  (!file.exists()  && !file.isDirectory()) {           
 			    return false;
 			} 
 			else {  
-			    //mySystem.out.println("目录存在");  
 			    return true;
 			}  
 		}
