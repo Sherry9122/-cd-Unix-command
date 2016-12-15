@@ -9,9 +9,9 @@ public class Cdcommandline {
 		// TODO Auto-generated method stub
 		while (true) {
 			String[] inputs = input2();
-			//check第一部分，是不是command，如果是，继续，不是，提示错误
+			//check the first part of input, if is a valid command, continue;if not return error
 			if (checkCommand(inputs[0])) {
-				//判断目录是否存在
+				//check if the directory exists
 				checkCurrentDirectory(inputs[1]);
 			}
 			else {
@@ -24,7 +24,7 @@ public class Cdcommandline {
 		}
 	}
 	
-	//列出这个文件夹下所有的文件
+	//list all the files in this directory
 		private static void listFiles(String folder){
 			File directory = new File(folder);//进入当前文件夹
 			File[] contents = directory.listFiles();
@@ -36,27 +36,26 @@ public class Cdcommandline {
 		
 
 		
-		//有用
+		//deal with the input string, separate it into 3 parts
 		private static String[] input2() { 
 	        Scanner sc = new Scanner(System.in); 
 	        System.out.println("$"); 
 	        String path = sc.nextLine(); 
 	        path = path.replaceAll("/+", "/");
-	        //words[1]指令mycd，words[1]初始路径，words[2]新路径
+	        //words[1]stores the command like "mycd"，words[1]stores the current path，words[2]stores the new path
 	        String[] words = path.split(" ");
 	        return words;
 		}
 		
-		//有用
+		//check if the command is a valid command
 		private static boolean checkCommand(String command) {
 			return command.equals("mycd");
 		}
 		
-		//有用
-		//check word[1]路径是否存在
+
+		//check if word[1] the current path is exist
 		private static boolean checkCurrentDirectory(String input) {
 			File file =new File(input);    
-			//如果文件夹不存在则创建    
 			if  (!file.exists()  && !file.isDirectory()) {       
 			    //System.out.println("目录不存在");    
 			    return false;
@@ -67,10 +66,9 @@ public class Cdcommandline {
 			}  
 		}
 		
-		//有用
+		//deal with the new path
 		private static String checkNewDirectory(String current, String newpath) {
-			//如果以"/"开始，则回到根目录，直接返回新path的路径
-			//to be continue：多个斜杠
+			//if the new path starts with a "/", then return to the root directory and go directly to the new path
 			String result = "No such file or directory";
 			if (newpath.startsWith("/")) {
 				if (checkCurrentDirectory(newpath)) {
@@ -104,7 +102,7 @@ public class Cdcommandline {
 			return result;
 		}
 		
-		//有用
+		//input: current path ;return the parent directory of the current path
 		private static String toParentDirectory(String current) {
 			String result = current.substring(0, current.lastIndexOf("/"));
 			if (result.length() < 1) {
